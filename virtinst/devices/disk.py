@@ -974,6 +974,8 @@ class DeviceDisk(Device):
             return "sd"
         if guest.os.is_q35():
             return "sata"
+        if self.is_cdrom() and guest.os.is_loongarch64():
+            return "scsi"
         if self.conn.is_bhyve():
             # IDE bus is not supported by bhyve
             return "sata"

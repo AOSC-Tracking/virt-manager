@@ -289,6 +289,10 @@ class DomainCapabilities(XMLBuilder):
             r".*arm/QEMU_EFI.*",  # fedora, gerd's firmware repo
             r".*edk2-arm-code\.fd"  # upstream qemu
         ],
+        "loongarch64": [
+            ".*edk2-loongarch64-code.fd",  # loongarch
+            ".*edk2-loongarch64-vars.fd",  # gerd's firmware repo
+        ],
     }
 
     def find_uefi_path_for_arch(self):
