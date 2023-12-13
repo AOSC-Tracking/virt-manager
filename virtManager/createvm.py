@@ -476,7 +476,8 @@ class vmmCreateVM(vmmGObjectUI):
 
         installable_arch = bool(guest.os.is_x86() or
                 guest.os.is_ppc64() or
-                guest.os.is_s390x())
+                guest.os.is_s390x() or
+                guest.os.is_loongarch64())
 
         default_efi = (
             self.config.get_default_firmware_setting() == "uefi" and
@@ -863,6 +864,9 @@ class vmmCreateVM(vmmGObjectUI):
         if recommended_machine:
             defmachine = recommended_machine
             prios = [defmachine]
+
+        if self._capsinfo.arch in ["loongarch64"]:
+            defmachine = "virt"
 
         for p in prios[:]:
             if p not in machines:
